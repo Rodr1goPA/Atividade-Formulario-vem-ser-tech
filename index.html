@@ -111,7 +111,7 @@
         }
         function populateTable(data) {
             const tableBody = document.getElementById('data-body');
-            tableBody.innerHTML = ''; // Limpa o conteúdo anterior da tabela
+            tableBody.innerHTML = '';
             data.forEach(item => {
                 const row = tableBody.insertRow();
                 for (key in item) {
@@ -123,11 +123,11 @@
         function toggleTable() {
             const table = document.getElementById('data-table');
             if (tableVisible) {
-                table.style.display = 'none'; // Esconde a tabela
+                table.style.display = 'none';
             } else {
-                table.style.display = 'table'; // Mostra a tabela
+                table.style.display = 'table';
             }
-            tableVisible = !tableVisible; // Alterna o estado
+            tableVisible = !tableVisible; 
         }
     </script>
 </body>
