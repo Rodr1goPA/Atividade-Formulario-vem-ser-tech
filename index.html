@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-dtXPM3xZaaDiMqu8y5z1O5Dw0/1...QG5eF6" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form onsubmit="event.preventDefault(); postJSON(event);">
+        <h1>Formulário</h1>
+        <ul>
+            <li>
+                <label for="firstname">Nome:</label>
+                <input type="text" id="firstname" name="firstname" placeholder="Inserir o nome do Ex: José"/>
+            </li>
+            <li>
+                <label for="lastname">Sobrenome:</label>
+                <input type="text" id="lastname" name="lastname" placeholder="Inserir sobrenome  Ex: Silva"/>
+            </li>
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" autocomplete="off" placeholder="Inserir E-mail Ex: ****@gmail.com"/>
+            </li>
+            <li>
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" name="idade" />
+            </li>
+            <li>
+                <label for="sexo">Sexo:</label>
+                <input type="text" id="sexo" name="sexo" />
+            </li>
+        </ul>
+        <button class="btn" type="submit" value="Enviar">Enviar</button>
+        <button class="btn" type="button" onclick="getJSON()">Obter Dados</button>
+    </form>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th></th>
+                <!-- ... (outros cabeçalhos da tabela) ... -->
+            </tr>
+        </thead>
+        <tbody id="data-body">
+            <!-- Aqui os dados serão inseridos dinamicamente -->
+        </tbody>
+    </table>
+    <footer>Projeto desenvolvido por <a href="https://github.com/Rodr1goPA" target="_blank">Rodrigo.P</a></footer>
+    <script>
+        async function postJSON(event) {
+            const formData = new FormData(document.querySelector('form'));
+            const firstname = formData.get("firstname");
+            const lastname = formData.get("lastname");
+            const email = formData.get("email");
+            const idade = formData.get("idade");
+            const sexo = formData.get("sexo");
+            try {
+                const response = await fetch("https://crudcrud.com/api/b829e2fc15d1446a849250aff31c6d91/usuarios", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        firstname: firstname,
+                        lastname: lastname,
+                        email: email,
+                        idade: idade,
+                        sexo: sexo
+                    }),
+                });
+                const data = await response.json();
+                console.log('Success:', data);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+            const form = event.target;
+            form.reset();
+        }
+
+        async function getJSON() {
+            try {
+                const response = await fetch("https://crudcrud.com/api/b829e2fc15d1446a849250aff31c6d91/usuarios", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Dados obtidos com sucesso:', data);
+                    populateTable(data); /*alteração*/
+                } else {
+                    console.error('Erro ao obter dados. Status:', response.status);
+                }
+            } catch (error) {
+                console.error("Erro na solicitação:", error);
+            }
+        }
+        function populateTable(data) {
+            const tableBody = document.getElementById('data-body');
+            tableBody.innerHTML = ''; // Limpa o conteúdo anterior da tabela
+            data.forEach(item => {
+                const row = tableBody.insertRow();
+                for (key in item) {
+                    const cell = row.insertCell();
+                    cell.innerHTML = item[key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
