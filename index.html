@@ -33,21 +33,24 @@
             </li>
         </ul>
         <button class="btn" type="submit" value="Enviar">Enviar</button>
-        <button class="btn" type="button" onclick="getJSON()">Obter Dados</button>
+        <button class="btn" type="button" onclick="toggleTable()">Mostrar/Esconder</button>
+        <p class="aviso">*Aviso: primeiro preencha o formulário acima e depois clica em Mostrar para visualizar os dados!</p>
     </form>
     <table id="data-table">
         <thead>
-            <tr>
-                <th></th>
-                <!-- ... (outros cabeçalhos da tabela) ... -->
-            </tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Email</th>
+            <th>Idade</th>
+            <th>Sexo</th>
         </thead>
         <tbody id="data-body">
-            <!-- Aqui os dados serão inseridos dinamicamente -->
         </tbody>
     </table>
     <footer>Projeto desenvolvido por <a href="https://github.com/Rodr1goPA" target="_blank">Rodrigo.P</a></footer>
     <script>
+        let tableVisible = false;
         async function postJSON(event) {
             const formData = new FormData(document.querySelector('form'));
             const firstname = formData.get("firstname");
@@ -56,7 +59,7 @@
             const idade = formData.get("idade");
             const sexo = formData.get("sexo");
             try {
-                const response = await fetch("https://crudcrud.com/api/b829e2fc15d1446a849250aff31c6d91/usuarios", {
+                const response = await fetch("https://crudcrud.com/api/b829e2fc15d1446a849250aff31c6d91/dadosUser", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -76,11 +79,12 @@
             }
             const form = event.target;
             form.reset();
+            await getJSON();
         }
 
         async function getJSON() {
             try {
-                const response = await fetch("https://crudcrud.com/api/b829e2fc15d1446a849250aff31c6d91/usuarios", {
+                const response = await fetch("https://crudcrud.com/api/b829e2fc15d1446a849250aff31c6d91/dadosUser", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -90,13 +94,20 @@
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Dados obtidos com sucesso:', data);
-                    populateTable(data); /*alteração*/
+                    populateTable(data);
+                    toggleTable()
                 } else {
                     console.error('Erro ao obter dados. Status:', response.status);
                 }
             } catch (error) {
                 console.error("Erro na solicitação:", error);
             }
+        }
+        
+        function toggleTable() {
+            const table = document.getElementById('data-table');
+            table.style.display = tableVisible ? 'none' : 'table';
+            tableVisible = !tableVisible;
         }
         function populateTable(data) {
             const tableBody = document.getElementById('data-body');
@@ -108,6 +119,15 @@
                     cell.innerHTML = item[key];
                 }
             });
+        }
+        function toggleTable() {
+            const table = document.getElementById('data-table');
+            if (tableVisible) {
+                table.style.display = 'none'; // Esconde a tabela
+            } else {
+                table.style.display = 'table'; // Mostra a tabela
+            }
+            tableVisible = !tableVisible; // Alterna o estado
         }
     </script>
 </body>
