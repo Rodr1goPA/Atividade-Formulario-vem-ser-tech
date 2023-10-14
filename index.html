@@ -10,41 +10,51 @@
 </head>
 <body>
     <form onsubmit="event.preventDefault(); postJSON(event);">
-        <h1>Formulário</h1>
+        <h1>Cadastro </h1>
         <ul>
             <li>
                 <label for="firstname">Nome:</label>
+                <br>
                 <input type="text" id="firstname" name="firstname" placeholder="Inserir o nome do Ex: José"/>
             </li>
             <li>
                 <label for="lastname">Sobrenome:</label>
+                <br>
                 <input type="text" id="lastname" name="lastname" placeholder="Inserir sobrenome  Ex: Silva"/>
             </li>
             <li>
                 <label for="email">Email:</label>
+                <br>
                 <input type="email" id="email" name="email" autocomplete="off" placeholder="Inserir E-mail Ex: ****@gmail.com"/>
             </li>
             <li>
                 <label for="idade">Idade:</label>
+                <br>
                 <input type="number" id="idade" name="idade" />
             </li>
             <li>
-                <label for="sexo">Sexo:</label>
-                <input type="text" id="sexo" name="sexo" />
+                <fieldset>
+                    <legend>Sexo</legend>
+                    <div class="conteiner-form">
+                        <input type="radio" id="masculino" name="sexo" value="masculino">
+                        <label for="masculino">Masculino</label>
+    
+                        <input type="radio" id="feminino" name="sexo" value="feminino">
+                        <label for="feminino">Feminino</label>
+    
+                        <input type="radio" id="outro" name="sexo" value="outro">
+                        <label for="outro">Outro</label>
+                    </div>
+                </fieldset>
             </li>
         </ul>
-        <button class="btn" type="submit" value="Enviar">Enviar</button>
-        <button class="btn" type="button" onclick="toggleTable()">Mostrar/Esconder</button>
-        <p class="aviso">*Aviso: primeiro preencha o formulário acima e depois clica em Mostrar para visualizar os dados!</p>
+        <div class="container-btn">
+            <button class="btn" type="submit" value="Enviar">Enviar</button>
+            <button class="btn" type="button" onclick="getJSON()">Mostrar</button>
+        </div>
     </form>
     <table id="data-table">
-        <thead>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Sobrenome</th>
-            <th>Email</th>
-            <th>Idade</th>
-            <th>Sexo</th>
+        <thead id="head-table">
         </thead>
         <tbody id="data-body">
         </tbody>

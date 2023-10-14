@@ -4,56 +4,49 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 body{
-    background-color: rgb(31, 37, 54);
+    background-color: rgb(22, 22, 23);
 }
 form{
-    background-color: rgb(196, 184, 184);
+    background-color: rgb(47, 45, 45);
     border-radius: 5%;
-    border: 1px solid black;
-    width: 450px;
+    width: 400px;
     margin: 50px auto;
+    padding: 5px;
 }
 form > h1{
     text-align: center;
-    margin-top: 30px;
-    color: rgb(11, 11, 57);
-}
-form > ul{
-    margin: 30px auto;
-    width: 420px;
-}
-form > ul > li{
-    margin-top: 20px;
-    list-style: none;
-}
-.aviso{
-    color: rgb(170, 66, 66);
-    font-size: 0.9em;
-    text-align: center;
-    padding-bottom: 10px;
+    padding: 20px;
+    color: rgb(232, 67, 106);
 }
 label{
-    text-align: right;
-    width: 95px;
-    display: inline-block;
+    color: rgb(232, 67, 106);
+    padding: 3px;
+}
+form > ul{
+    margin: auto;
+    width: 380px;
+}
+form > ul > li{
+    margin-top: 10px;
+    list-style: none;
 }
 input{
-    width: 270px;
-    height: 30px;
+    padding: 5px;
+    width: 378px;
+    height: 40px;
     border-radius: 5px;
     border-style: none;
+    background-color: rgba(72, 69, 69, 0.663);
 }
 .btn{
     font-size: 1em;
-    display: block;
-    margin: auto;
-    margin-bottom: 30px;
-    width: 150px;
+    width: 130px;
     height: 40px;
     border-style: none;
-    background-color: rgb(75, 75, 246);
+    background-color:rgb(232, 67, 106);
     color: white;
-    border-radius: 10px;
+    border-radius: 5px;
+    margin: 15px;
 }
 .btn:hover{
     background-color: rgb(201, 114, 114);
@@ -68,7 +61,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color:rgb(108, 108, 210);
+    background-color:rgb(232, 67, 106);
     color: white;
     text-align: center;
     padding: 10px;
@@ -78,10 +71,9 @@ footer > a{
     color: rgb(18, 18, 18);
 }
 #data-table{
-    display: none;
     color: white;
     margin: auto;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 table {
     border-collapse: collapse;
@@ -90,7 +82,7 @@ table, thead{
     color: black;
 }
 table, th, td {
-    border: 1px solid #ccc;
+    border: 1px solid rgb(207, 188, 193);
 }
 
 th, td {
@@ -99,9 +91,28 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: rgb(232, 67, 106);
+}
+.container-btn{
+    display: flex;
+    margin: 0px auto 30px;
+    width: 260px;
 }
 
+legend{
+    margin-left: 15px;
+    color: rgb(232, 67, 106);
+}
+.conteiner-form {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 360px;
+}
 
+.conteiner-form > input{
+    margin: 10px;
+    width: 20px;
+}
 
 
