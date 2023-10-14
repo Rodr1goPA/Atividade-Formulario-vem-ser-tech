@@ -37,6 +37,8 @@ input{
     border-radius: 5px;
     border-style: none;
     background-color: rgba(72, 69, 69, 0.663);
+    font-size: 1em;
+    color: white;
 }
 .btn{
     font-size: 1em;
