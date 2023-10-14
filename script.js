@@ -51,7 +51,6 @@ async function getJSON() {
 function populateTable(data) {
     const headTable = document.getElementById('head-table');
     headTable.innerHTML = `
-    <th>ID</th>
     <th>Nome</th>
     <th>Sobrenome</th>
     <th>Email</th>
@@ -63,8 +62,10 @@ function populateTable(data) {
     data.forEach(item => {
         const row = tableBody.insertRow();
         for (key in item) {
-            const cell = row.insertCell();
-            cell.innerHTML = item[key];
+            if(key !== '_id') {
+                const cell = row.insertCell();
+                cell.innerHTML = item[key];
+            }
         }
     });
 }
