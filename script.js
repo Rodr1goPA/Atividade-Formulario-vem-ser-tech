@@ -30,7 +30,7 @@ async function postJSON(event) {
 
 async function getJSON() {
     try {
-        const response = await fetch("https://crudcrud.com/api/8db58b49b9c840b99f0c6f4dc933bf1d/usuarios", {
+        const response = await fetch("https://crudcrud.com/api/f5d34d56dbdb458c93d430d08c0eced4/lista-de-usuarios", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
